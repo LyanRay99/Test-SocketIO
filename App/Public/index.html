@@ -10,6 +10,24 @@
 
 <body>
     <h1>Mtt</h1>
+    <button class="btn" onclick={counter()}>Count</button>
+
+    <!-- * Connect server to clients -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        const Button = document.getElementsByClassName("btn")
+
+        //* nhận message từ server
+        socket.on("sendMessage", (message) => {
+            console.log(message)
+        })
+
+        // send request update message
+        const counter = () => {
+            socket.emit("increment")
+        }
+    </script>
 </body>
 
 </html>
